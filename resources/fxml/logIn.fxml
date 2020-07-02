@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="pozadina" stylesheets="/css/logIn.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rs.projekat.LogInController">
+   <center>
+      <GridPane alignment="center" hgap="5.0" vgap="5.0">
+          <rowConstraints>
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints maxWidth="94.0" minWidth="10.0" prefWidth="35.0" />
+            <ColumnConstraints minWidth="10.0" />
+         </columnConstraints>
+         <children>
+            <Label text="Prijavite se kao admiristrator:" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </TextField>
+            <Label text="E-mail:" textFill="WHITE" GridPane.rowIndex="2" />
+            <Label text="Lozinka:" textFill="WHITE" GridPane.rowIndex="3" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Posjetioc ste? Prijavite se kao gost!" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="Prijavite se kao gost" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Prijavite se" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin></Button>
+            <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="4">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Separator>
+         </children>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+   <top>
+      <Label fx:id="dobroDosli" contentDisplay="CENTER" text="Dobro došli u  Konjički klub Hidalgo" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+   </top>
+   <bottom>
+      <Label text="Zaboravili ste lozinku? Pritisnite ovdje da je zamjenite!" textFill="WHITE" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="5.0" />
+         </padding></Label>
+   </bottom>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</BorderPane>

@@ -1,0 +1,6 @@
+#pozadina{
+    -fx-background-image: url("/img/pozadinaLogIn.jpg");
+}
+#dobroDosli{
+    -fx-font-weight: bold;
+}
