@@ -2,9 +2,18 @@ package ba.unsa.etf.rs.projekat;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class LogInController {
     public TextField fldPassword;
@@ -35,5 +44,13 @@ public class LogInController {
             login.close();
         }
 
+    }
+
+    public void changePassword(MouseEvent mouseEvent) throws IOException {
+        Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/changePassword.fxml"));
+        stage.setTitle("Change Password");
+        stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
+        stage.show();
     }
 }

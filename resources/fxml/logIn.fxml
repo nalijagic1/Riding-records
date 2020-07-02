@@ -63,10 +63,13 @@
       </Label>
    </top>
    <bottom>
-      <Label text="Forgot your password? Click here to change it!" textFill="WHITE" BorderPane.alignment="CENTER">
+      <Label fx:id="change" onMouseClicked="#changePassword" text="Click here to change password!" textFill="WHITE" BorderPane.alignment="CENTER">
          <padding>
             <Insets top="5.0" />
-         </padding></Label>
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></Label>
    </bottom>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

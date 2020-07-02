@@ -4,3 +4,7 @@
 #dobroDosli{
     -fx-font-weight: bold;
 }
+#change:hover{
+    -fx-font-style: italic;
+    -fx-text-fill: BISQUE;
+}

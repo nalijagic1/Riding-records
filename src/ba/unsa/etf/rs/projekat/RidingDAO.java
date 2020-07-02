@@ -4,4 +4,5 @@ import javafx.collections.ObservableList;
 
 public interface RidingDAO {
     ObservableList<Admin> getAdmin();
+    void changePassword(Admin a);
 }

@@ -7,11 +7,12 @@ import java.sql.*;
 
 public class RidingDAOBase implements RidingDAO {
     private Connection connection;
-    private PreparedStatement giveAdmin;
+    private PreparedStatement giveAdmin,changePass;
     public RidingDAOBase() {
         try {
             connection =  DriverManager.getConnection("jdbc:sqlite:riding.db");
             giveAdmin  = connection.prepareStatement("select * from admin order by id");
+            changePass = connection.prepareStatement("Update admin set password=? where id=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,5 +30,16 @@ public class RidingDAOBase implements RidingDAO {
             e.printStackTrace();
         }
         return owner;
+    }
+
+    @Override
+    public void changePassword(Admin a) {
+        try {
+            changePass.setInt(2,a.getId());
+            changePass.setString(1,a.getPassword());
+            changePass.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
