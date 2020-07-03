@@ -1,0 +1,21 @@
+#pozadina{
+    -fx-background-image: url("/img/pozadinaLogIn.jpg");
+}
+#horseInfo{
+    -fx-graphic: url("/img/horse.png");
+}
+#riderInfo{
+    -fx-graphic: url("/img/rider.png");
+}
+#equipmentInfo{
+    -fx-graphic: url("/img/equipment.png");
+}
+#eventInfo{
+    -fx-graphic: url("/img/trophy.png");
+}
+#ridingInfo{
+    -fx-graphic: url("/img/horse-ride.png");
+}
+#trainerInfo{
+    -fx-graphic: url("/img/trainer.png");
+}
