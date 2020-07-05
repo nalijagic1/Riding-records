@@ -7,12 +7,14 @@ import java.sql.*;
 
 public class RidingDAOBase implements RidingDAO {
     private Connection connection;
-    private PreparedStatement giveAdmin,changePass;
+    private PreparedStatement giveAdmin,changePass, giveRiders, deleteRider;
     public RidingDAOBase() {
         try {
             connection =  DriverManager.getConnection("jdbc:sqlite:riding.db");
             giveAdmin  = connection.prepareStatement("select * from admin order by id");
+            giveRiders = connection.prepareStatement("select * from riders order by surname");
             changePass = connection.prepareStatement("Update admin set password=? where id=?");
+            deleteRider = connection.prepareStatement("Delete from riders where id=? ");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,5 +43,40 @@ public class RidingDAOBase implements RidingDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ObservableList<Rider> getRiders() {
+        ObservableList<Rider> riders = FXCollections.observableArrayList();
+        try {
+            ResultSet r = giveRiders.executeQuery();
+            while(r.next()) {
+                Rider a = new Rider(r.getInt(1), r.getString(2), r.getString(3), r.getDate(4).toLocalDate(), r.getDate(5).toLocalDate(), r.getString(6),r.getString(7));
+                riders.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return riders;
+    }
+
+    @Override
+    public void editRider(Rider r) {
+
+    }
+
+    @Override
+    public void deleteRider(Rider r) {
+        try {
+            deleteRider.setInt(1,r.getId());
+            deleteRider.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addRider(Rider r) {
+
     }
 }
