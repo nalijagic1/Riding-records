@@ -2,11 +2,29 @@
     -fx-background-image: url("/img/pozadinaLogIn.jpg");
 }
 #addRider{
-    -fx-graphic: url("/img/Add-icon.png");
-}
+     -fx-graphic: url("/img/Add-icon.png");
+ }
 #editRider{
     -fx-graphic: url("/img/edit-icon.png");
 }
 #deleteRider{
+    -fx-graphic: url("/img/close-icon.png");
+}
+#addTrainer{
+    -fx-graphic: url("/img/Add-icon.png");
+}
+#editTrainer{
+    -fx-graphic: url("/img/edit-icon.png");
+}
+#deleteTrainer{
+    -fx-graphic: url("/img/close-icon.png");
+}
+#addHorse{
+    -fx-graphic: url("/img/Add-icon.png");
+}
+#editHorse{
+    -fx-graphic: url("/img/edit-icon.png");
+}
+#deleteHorse{
     -fx-graphic: url("/img/close-icon.png");
 }

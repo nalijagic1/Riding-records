@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="pozadina" maxHeight="-Infinity" stylesheets="/css/main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rs.projekat.MainController">
+<BorderPane fx:id="pozadina" maxHeight="-Infinity" stylesheets="/css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rs.projekat.MainController">
    <top>
       <VBox style="-fx-background-color: #DCDCDC;" BorderPane.alignment="CENTER">
          <children>
@@ -106,8 +121,8 @@
                               <Label text="Name:" textFill="WHITE" GridPane.columnIndex="1" />
                               <Label text="Surname:" textFill="#fffdfd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label text="Date of Birth:" textFill="#fcf9f9" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="nameRider" GridPane.columnIndex="2" />
-                              <TextField fx:id="surnameRider" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="nameRider" editable="false" GridPane.columnIndex="2" />
+                              <TextField fx:id="surnameRider" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <ImageView fx:id="pictureRider" fitHeight="130.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowSpan="3">
                                  <GridPane.margin>
                                     <Insets />
@@ -118,7 +133,7 @@
                               </ImageView>
                               <Label text="Date of Membership:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="JMBG:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField fx:id="jmbgRider" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <TextField fx:id="jmbgRider" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                               <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5">
                                 <buttons>
                                   <Button fx:id="addRider" mnemonicParsing="false" text="Add Rider" />
@@ -126,8 +141,8 @@
                                     <Button fx:id="deleteRider" mnemonicParsing="false" onAction="#riderDelete" text="Delete Rider" />
                                 </buttons>
                               </ButtonBar>
-                              <TextField fx:id="birthRider" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <TextField fx:id="membershipRider" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <TextField fx:id="birthRider" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="membershipRider" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -137,27 +152,115 @@
                 </Tab>
                 <Tab fx:id="trainerInfo" text="Trainers">
                      <content>
-                        <GridPane>
+                        <GridPane hgap="10.0" vgap="10.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="0.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" />
+                              <ColumnConstraints />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
+                           <children>
+                              <ListView fx:id="trainerList" prefHeight="200.0" prefWidth="200.0" GridPane.rowSpan="5" />
+                              <Label text="Name:" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label text="Surname:" textFill="#fffdfd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Date of Birth:" textFill="#fcf9f9" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="nameTrainer" editable="false" GridPane.columnIndex="2" />
+                              <TextField fx:id="surnameTrainer" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ImageView fx:id="pictureTrainer" fitHeight="140.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowSpan="3">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <Label text="Date of Membership:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="JMBG:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="jmbgTrainer" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                                 <buttons>
+                                    <Button fx:id="addTrainer" mnemonicParsing="false" text="Add Trainer" />
+                                    <Button fx:id="editTrainer" mnemonicParsing="false" text="Edit Trainer" />
+                                    <Button fx:id="deleteTrainer" mnemonicParsing="false" onAction="#trainerDelete" text="Delete Trainer" />
+                                 </buttons>
+                              </ButtonBar>
+                              <TextField fx:id="birthTrainer" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="membershipTrainer" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label text="Salary:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField fx:id="salaryTrainer" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </GridPane>
                      </content>
                 </Tab>
                   <Tab fx:id="horseInfo" text="Horses">
                      <content>
-                        <GridPane>
+                        <GridPane hgap="10.0" vgap="10.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="0.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" />
+                              <ColumnConstraints />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
+                           <children>
+                              <ListView fx:id="horseList" prefHeight="200.0" prefWidth="200.0" GridPane.rowSpan="5" />
+                              <Label text="Name:" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label text="Breed:" textFill="#fffdfd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Origin:" textFill="#fcf9f9" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="nameHorse" editable="false" GridPane.columnIndex="2" />
+                              <TextField fx:id="breedHorse" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ImageView fx:id="pictureTrainer1" fitHeight="140.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowSpan="3">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <Label text="Age" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Label text="Color:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <TextField fx:id="jmbgTrainer1" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                              <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5">
+                                 <buttons>
+                                    <Button fx:id="addHorse" mnemonicParsing="false" text="Add Horse" />
+                                    <Button fx:id="editHorse" mnemonicParsing="false" text="Edit Horse" />
+                                    <Button fx:id="deleteHorse" mnemonicParsing="false" onAction="#trainerDelete" text="Delete Horse" />
+                                 </buttons>
+                              </ButtonBar>
+                              <TextField fx:id="originHorse" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="ageHorse" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <Label text="Description:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextArea fx:id="descriptionHorse" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label fx:id="eventHorse" text="Event speciality:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </GridPane>
                      </content>
                   </Tab>
