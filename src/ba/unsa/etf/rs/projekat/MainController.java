@@ -5,16 +5,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class MainController implements Initializable {
 
@@ -24,6 +27,7 @@ public class MainController implements Initializable {
     public Tab horseInfo;
     public Tab trainerInfo;
     public Tab riderInfo;
+
     public ListView<Rider> ridersList;
     public TextField membershipRider;
     public TextField birthRider;
@@ -31,6 +35,7 @@ public class MainController implements Initializable {
     public ImageView pictureRider;
     public TextField surnameRider;
     public TextField nameRider;
+
     public ListView<Trainer> trainerList;
     public TextField nameTrainer;
     public TextField surnameTrainer;
@@ -39,6 +44,18 @@ public class MainController implements Initializable {
     public TextField birthTrainer;
     public TextField membershipTrainer;
     public TextField salaryTrainer;
+
+    public ListView<Horse> horseList;
+    public TextField nameHorse;
+    public TextField breedHorse;
+    public ImageView pictureHorse;
+    public TextField colorHorse;
+    public TextField originHorse;
+    public TextField ageHorse;
+    public TextArea descriptionHorse;
+    public TextField eventHorse;
+    public ImageView logoImage;
+    public VBox infoBox;
     private RidingDAO dao =new RidingDAOBase();
 
 
@@ -54,6 +71,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logoImage.setImage(new Image("/img/logo hidalgo png.png"));
         //postavljanje ikonica na tabove
        eventInfo.setGraphic(buildImage("/img/trophy.png"));
         riderInfo.setGraphic(buildImage("/img/rider.png"));
@@ -99,6 +117,29 @@ public class MainController implements Initializable {
                 jmbgTrainer.setText(newKorisnik.getRider().getJmbg());
                 pictureTrainer.setImage(new Image(newKorisnik.getRider().getPicture()));
                 salaryTrainer.setText(String.valueOf(newKorisnik.getSalary()));
+            }
+        });
+        //tab Horses
+        horseList.setItems(dao.getHorse());
+        horseList.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
+            if(newKorisnik==null){
+                nameHorse.setText("");
+                breedHorse.setText("");
+                originHorse.setText("");
+                descriptionHorse.setText("");
+                eventHorse.setText("");
+                pictureHorse.setImage(null);
+                ageHorse.setText("");
+                colorHorse.setText("");
+            }else{
+                nameHorse.setText(newKorisnik.getName());
+                breedHorse.setText(newKorisnik.getBreed());
+                originHorse.setText(newKorisnik.getOrigin());
+                descriptionHorse.setText(newKorisnik.getDescription());
+                eventHorse.setText(newKorisnik.getEvent().getName());
+                pictureHorse.setImage(new Image(newKorisnik.getPicture()));
+                ageHorse.setText(String.valueOf(newKorisnik.getAge()));
+                colorHorse.setText(newKorisnik.getColor());
             }
         });
     }
@@ -159,5 +200,41 @@ public class MainController implements Initializable {
             error.setTitle("Deleteing failed");
             error.show();
         }
+    }
+
+    public void horseDelete(ActionEvent actionEvent) {
+        Horse h = horseList.getSelectionModel().getSelectedItem();
+        if(h!=null) {
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+            confirm.setContentText("Are you sure you want to delete selected horse?");
+            confirm.setTitle("Delete");
+            Optional<ButtonType> result = confirm.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                dao.deleteHorse(h);
+            }
+            confirm.close();
+            horseList.getSelectionModel().selectFirst();
+            horseList.setItems(dao.getHorse());
+
+        }else{
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setContentText("No horse was selected!");
+            error.setTitle("Deleteing failed");
+            error.show();
+        }
+    }
+
+    public void addRider(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        EditRiderController cont=new EditRiderController(null);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editRider.fxml"));
+        loader.setController(cont);
+        Parent root = loader.load();
+        stage.setTitle("Add Book");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.showAndWait();
+        if(cont.getRider() != null) dao.addRider(cont.getRider());
+        ridersList.setItems(dao.getRiders());
+
     }
 }

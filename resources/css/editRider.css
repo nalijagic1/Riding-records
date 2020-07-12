@@ -1,0 +1,6 @@
+.right {
+    -fx-control-inner-background: greenyellow;
+}
+.wrong {
+    -fx-control-inner-background: lightpink;
+}

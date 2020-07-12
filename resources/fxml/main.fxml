@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="pozadina" maxHeight="-Infinity" stylesheets="/css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rs.projekat.MainController">
+<BorderPane fx:id="pozadina" maxHeight="-Infinity" stylesheets="/css/main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rs.projekat.MainController">
    <top>
       <VBox style="-fx-background-color: #DCDCDC;" BorderPane.alignment="CENTER">
          <children>
@@ -84,6 +70,11 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <Label alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #443025; -fx-border-color: white;" text="Welcome to Riding Club Hidalgo" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
    </top>
@@ -136,7 +127,7 @@
                               <TextField fx:id="jmbgRider" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                               <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5">
                                 <buttons>
-                                  <Button fx:id="addRider" mnemonicParsing="false" text="Add Rider" />
+                                  <Button fx:id="addRider" mnemonicParsing="false" onAction="#addRider" text="Add Rider" />
                                     <Button fx:id="editRider" mnemonicParsing="false" text="Edit Rider" />
                                     <Button fx:id="deleteRider" mnemonicParsing="false" onAction="#riderDelete" text="Delete Rider" />
                                 </buttons>
@@ -215,7 +206,7 @@
                               <ColumnConstraints hgrow="SOMETIMES" />
                               <ColumnConstraints hgrow="SOMETIMES" percentWidth="0.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
                               <ColumnConstraints />
                            </columnConstraints>
                            <rowConstraints>
@@ -233,9 +224,9 @@
                               <Label text="Origin:" textFill="#fcf9f9" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="nameHorse" editable="false" GridPane.columnIndex="2" />
                               <TextField fx:id="breedHorse" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <ImageView fx:id="pictureTrainer1" fitHeight="140.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowSpan="3">
+                              <ImageView fx:id="pictureHorse" fitHeight="160.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowSpan="3">
                                  <GridPane.margin>
-                                    <Insets />
+                                    <Insets left="30.0" />
                                  </GridPane.margin>
                                  <viewport>
                                     <Rectangle2D />
@@ -243,20 +234,20 @@
                               </ImageView>
                               <Label text="Age" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                               <Label text="Color:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                              <TextField fx:id="jmbgTrainer1" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                              <TextField fx:id="colorHorse" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                               <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5">
                                  <buttons>
                                     <Button fx:id="addHorse" mnemonicParsing="false" text="Add Horse" />
                                     <Button fx:id="editHorse" mnemonicParsing="false" text="Edit Horse" />
-                                    <Button fx:id="deleteHorse" mnemonicParsing="false" onAction="#trainerDelete" text="Delete Horse" />
+                                    <Button fx:id="deleteHorse" mnemonicParsing="false" onAction="#horseDelete" text="Delete Horse" />
                                  </buttons>
                               </ButtonBar>
                               <TextField fx:id="originHorse" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <TextField fx:id="ageHorse" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                               <Label text="Description:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextArea fx:id="descriptionHorse" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <Label fx:id="eventHorse" text="Event speciality:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="eventHorse" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label text="Event speciality:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -308,4 +299,14 @@
          </children>
       </GridPane>
    </center>
+   <left>
+      <VBox fx:id="infoBox" prefHeight="442.0" prefWidth="147.0" style="-fx-background-color: #443025; -fx-border-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="logoImage" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="5.0" />
+               </VBox.margin></ImageView>
+         </children>
+      </VBox>
+   </left>
 </BorderPane>

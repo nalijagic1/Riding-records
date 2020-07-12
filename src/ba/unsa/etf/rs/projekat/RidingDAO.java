@@ -13,4 +13,9 @@ public interface RidingDAO {
     void editTrainer(Trainer t);
     void deleteTrainer(Trainer t);
     void addTrainer(Trainer t);
+    ObservableList<Event> getEvents();
+    ObservableList<Horse> getHorse();
+    void editHorse(Horse h);
+    void deleteHorse(Horse h);
+    void addHorse(Horse h);
 }
