@@ -1,5 +1,6 @@
 package ba.unsa.etf.rs.projekat;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -10,7 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -47,10 +51,16 @@ public class EditRiderController implements Initializable {
     public void addPicture(ActionEvent actionEvent) {
         FileChooser file = new FileChooser();
         file.setTitle("Select riders picture");
-        file.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pictures",".png"));
-        file.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pictures JPG",".jpg"));
         File picture = file.showOpenDialog(nameField.getScene().getWindow());
-        pictureView.setImage(new Image(picture.getPath()));
+        if(picture == null) return;
+        try {
+            BufferedImage buff = ImageIO.read(picture);
+            Image im = SwingFXUtils.toFXImage(buff,null);
+            pictureView.setImage(im);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     private boolean checkJMBG(LocalDate birth, String jmbg){
         boolean same = true;

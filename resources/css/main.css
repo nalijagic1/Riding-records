@@ -28,3 +28,16 @@
 #deleteHorse{
     -fx-graphic: url("/img/close-icon.png");
 }
+#phone{
+     -fx-graphic: url("/img/phone-call-icon.png");
+ }
+#mail{
+    -fx-graphic: url("/img/Mail-icon.png");
+}
+#facebook{
+    -fx-graphic: url("/img/social-facebook-box-blue-icon.png");
+}
+#insta{
+    -fx-graphic: url("/img/Instagram-icon.png");
+
+}

@@ -8,13 +8,14 @@ import java.time.LocalDate;
 
 public class RidingDAOBase implements RidingDAO {
     private Connection connection;
-    private PreparedStatement giveAdmin,changePass, giveRiders, addRider, deleteRider, giveTrainers,deleteTrainer,giveEvents,giveHorses,deleteHorse;
+    private PreparedStatement giveAdmin,changePass, giveRiders,changeRider, addRider, deleteRider, giveTrainers,deleteTrainer,giveEvents,giveHorses,deleteHorse;
     public RidingDAOBase() {
         try {
             connection =  DriverManager.getConnection("jdbc:sqlite:riding.db");
             giveAdmin  = connection.prepareStatement("select * from admin order by id");
             giveRiders = connection.prepareStatement("select * from riders order by surname");
             addRider =  connection.prepareStatement("Insert into riders values (?,?,?,?,?,?,?)");
+            changeRider = connection.prepareStatement("UPDATE riders set name=?,surname=?,date_of_birth=?,date_of_membership=?,jmbg=?,picture=? where id=? ");
             giveTrainers = connection.prepareStatement("select * from trainers");
             giveEvents = connection.prepareStatement("select * from events");
             giveHorses = connection.prepareStatement("select * from horses order by age desc ");
@@ -69,6 +70,18 @@ public class RidingDAOBase implements RidingDAO {
 
     @Override
     public void editRider(Rider r) {
+        try {
+            changeRider.setInt(7,r.getId());
+            changeRider.setString(1,r.getName());
+            changeRider.setString(2,r.getSurname());
+            changeRider.setDate(3, Date.valueOf(r.getDateOfBirth()));
+            changeRider.setDate(4, Date.valueOf(r.getDateOfMembership()));
+            changeRider.setString(5,r.getJmbg());
+            changeRider.setString(6,r.getPicture());
+            changeRider.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

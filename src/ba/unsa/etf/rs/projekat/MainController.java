@@ -230,11 +230,24 @@ public class MainController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editRider.fxml"));
         loader.setController(cont);
         Parent root = loader.load();
-        stage.setTitle("Add Book");
+        stage.setTitle("Add Rider");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.showAndWait();
         if(cont.getRider() != null) dao.addRider(cont.getRider());
         ridersList.setItems(dao.getRiders());
 
+    }
+
+    public void editRider(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        EditRiderController cont=new EditRiderController(ridersList.getSelectionModel().getSelectedItem());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editRider.fxml"));
+        loader.setController(cont);
+        Parent root = loader.load();
+        stage.setTitle("Change Rider");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.showAndWait();
+        if(cont.getRider() != null) dao.editRider(cont.getRider());
+        ridersList.setItems(dao.getRiders());
     }
 }
